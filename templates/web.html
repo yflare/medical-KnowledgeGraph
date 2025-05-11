@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>药品查询系统</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: '华文仿宋', sans-serif; /* 使用华文仿宋字体 */
+            background: #f7f7f7;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            display: flex;
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .sidebar {
+            flex: 1.5; /* 增加宽度 */
+            padding: 20px;
+            margin-right: 20px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .main-content {
+            flex: 2;
+            padding: 40px;
+            background: #e9ecef;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #00bfff; /* 浅蓝色标题 */
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .examples h2 {
+            color: #333;
+            text-align: left;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        .category-title {
+            background-color: #00bfff; /* 浅蓝色背景 */
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .examples ul {
+            list-style: none;
+            padding: 0;
+        }
+        .examples ul li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 8px 14px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 0.9em;
+        }
+        .examples button {
+            padding: 6px 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .examples button:hover {
+            background: #0056b3;
+        }
+        .content p {
+            font-size: 1.2em;
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+        @media (max-width: 998px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar, .main-content {
+                flex: none;
+                width: 100%; /* 宽度占满 */
+                margin: 0;
+            }
+            .sidebar {
+                margin-bottom: 20px; /* 底部留白 */
+            }
+        }
+    </style>
+    <script>
+        function handleQueryClick(query) {
+            document.querySelector('form').elements['query'].value = query;
+            document.querySelector('form').submit();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="examples">
+                <h2>示例问题：</h2>
+                <div class="examples">
+                    <h2 class="category-title">中药方剂问题</h2>
+                    <li>
+                        <span>克应丸的制作处方是什么？</span>
+                        <button onclick="handleQueryClick('克应丸的制作处方是什么？')">查询</button>
+                    </li>
+                    <li>
+                        <span>补血和气饮可以治疗什么病症？</span>
+                        <button onclick="handleQueryClick('补血和气饮可以治疗什么病症？')">查询</button>
+                    </li>
+                    <li>
+                        <span>补血定痛汤的用量用法是什么？</span>
+                        <button onclick="handleQueryClick('补血定痛汤的用量用法是什么？')">查询</button>
+                    </li>
+                    <li>
+                        <span>外邪未已者不能服用哪些中药方剂？</span>
+                        <button onclick="handleQueryClick('外邪未已者不能服用哪些中药方剂？')">查询</button>
+                    </li>
+                    <li>
+                        <span>如何制作苍术难名丹？</span>
+                        <button onclick="handleQueryClick('如何制作苍术难名丹？')">查询</button>
+                    </li>
+                    <li>
+                        <span>服用脚气散的注意事项有哪些？</span>
+                        <button onclick="handleQueryClick('服用脚气散的注意事项有哪些？')">查询</button>
+                    </li>
+                    <li>
+                        <span>在临床治疗慢性鼻炎时，可以使用哪些中药方剂？</span>
+                        <button onclick="handleQueryClick('在临床治疗慢性鼻炎时，可以使用哪些中药方剂？')">查询</button>
+                    </li>
+                    <h2 class="category-title">药品问题</h2>
+                    <li>
+                        <span>服用药品五海瘿瘤丸的注意事项有哪些？</span>
+                        <button onclick="handleQueryClick('服用药品五海瘿瘤丸的注意事项有哪些？')">查询</button>
+                    </li>
+                    <li>
+                        <span>药品益母草颗粒可以治疗什么病症？</span>
+                        <button onclick="handleQueryClick('药品益母草颗粒可以治疗什么病症？')">查询</button>
+                    </li>
+                    <li>
+                        <span>若出现月经量少的病症，建议使用什么药品？</span>
+                        <button onclick="handleQueryClick('若出现月经量少的病症，建议使用什么药品？')">查询</button>
+                    </li>
+                    <li>
+                        <span>药品金刚藤糖浆的用量用法是什么？</span>
+                        <button onclick="handleQueryClick('药品金刚藤糖浆的用量用法是什么？')">查询</button>
+                    </li>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <h1>药品查询系统</h1>
+            <form action="/submit-query" method="post">
+                <input type="text" name="query" placeholder="请输入您的查询" />
+                <input type="submit" value="查询" />
+            </form>
+            
+            <div class="content">
+                <!-- 查询结果将显示在这里 -->
+                <p>查询结果: {{ result }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

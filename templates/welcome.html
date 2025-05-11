@@ -1,0 +1,22 @@
+<!-- templates/welcome.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>中医问答系统</title>
+    <!-- 引入CSS样式文件 -->
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-container">
+            <h1 class="title">欢迎来到中医药问答系统!</h1>
+            <p class="subtitle">——在这里，您可以找到关于中药方剂与中药药品的解答！——</p>
+            <!-- welcome.html -->
+            
+            <a class="start-button" href="{{ url_for('submit_query') }}">开始查询</a>
+        </div>
+    </div>
+</body>
+</html>
+
