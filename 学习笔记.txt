@@ -1,0 +1,26 @@
+1.首先我需要下载git
+参考链接https://blog.csdn.net/weixin_42242910/article/details/136297201   非常顺利，不过英文不太看得懂，需要加强
+2.之后我预备上传之前知识图谱的大作业代码
+首先在github里面新建了一个仓库，然后就发现在仓库里面直接上传文件不成功，于是去网上寻找资料
+参考链接https://blog.csdn.net/weixin_43629813/article/details/113824388
+和https://blog.csdn.net/lijianyi0219/article/details/116297423
+事实上要先在本地建好一个git仓库之后，再将代码添加和提交到仓库中，之后再将本地仓库关联到github中
+由于是第一次需要设置邮箱和用户名，git config --global user.email"邮箱" 和git config --global user.name"用户名" 
+这里还需要配置好SSH
+3.我又重新新建了两个代码仓库，将之前软件工程和大创项目两份代码上传。熟悉一下流程。
+    1.首先打开git bash ,然后进入项目文件夹 cd 命令，如 cd d:/软件工程文档模板/nutrition_app，需要注意的是文件路径的反斜杠问题
+    2.然后git init，创建本地仓库
+    3.使用add命令git add .上传所有文件到仓库，需要注意的是add之后的 . 不能忘记，
+      如果只想添加某个文件或文件夹，就在add 后面加文件名，如git add  app.py
+    4.用commit 命令提交文件到仓库，如git commit -m "First commit"，
+      -m 参数用来添加该次提交的描述信息，必须要添加，否则被认为不合法。在这里我们可以写一些版本信息等
+    5.关联本地仓库和github仓库：git remote add origin https://github.com/yflare/nutrition_app.git
+      origin 后面是自己的仓库url地址
+    6.将文件上传到GitHub仓库:git push -u origin master
+      由于新建的远程仓库是空的，所以要加上-u这个参数，等远程仓库里面有了内容之后，下次再从本地库上传内容的时候只需下面这样即可：
+      git push origin master
+      如果创建github仓库时勾选了Initialize this repository with a README，自动了创建一个README文件，
+      将本地仓库内容推送到远程仓库的时候就会报一个failed to push some refs to https://github.com/…git的错。
+      这是由于新创建的那个仓库里面的README文件不在本地仓库目录中，这时我们可以通过以下命令先将内容合并一下：
+      git pull --rebase origin master
+4.
