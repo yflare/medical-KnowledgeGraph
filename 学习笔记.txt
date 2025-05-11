@@ -23,4 +23,4 @@
       将本地仓库内容推送到远程仓库的时候就会报一个failed to push some refs to https://github.com/…git的错。
       这是由于新创建的那个仓库里面的README文件不在本地仓库目录中，这时我们可以通过以下命令先将内容合并一下：
       git pull --rebase origin master
-4.
+4.提交后的代码，如果修改了内容，注意，要先保存，然后可以暂存更改，
