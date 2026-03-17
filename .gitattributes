@@ -1,0 +1,5 @@
+中医问答系统.docx filter=lfs diff=lfs merge=lfs -text
+1.确定主体、属性、问题＋爬虫 filter=lfs diff=lfs merge=lfs -text
+2.本体构建 filter=lfs diff=lfs merge=lfs -text
+3.RDF三元组构建 filter=lfs diff=lfs merge=lfs -text
+4.sqarql+flask filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,24 @@
+爬取的是
+中医方剂
+
+药名
+处方 [元组切分 分割 后续更好查找]
+功能主治  
+用法用量
+注意
+别名
+制法
+临床应用
+
+
+从第一位同学处获得的切分json数据
+经过transNewjson.py文件预处理，筛选出需要的形成对应json文件
+通过gatheJson.py将所有数据合并处理在一起形成merged_data.json文件
+之后分别在trans_drug_mapping.rml和transTeacher.rml中编写对应的规则
+然后使用rmlmapper生成对应的ttl文件，drug.ttl和teacher.ttl(注意中文解码）
+合并ttl文件形成combined.ttl
+最后test.py测试ttl文件语法正确性
+在语法正确后在portege中生成对应的owl本体
+
+
+

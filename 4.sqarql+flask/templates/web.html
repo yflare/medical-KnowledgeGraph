@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>药品查询系统</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: '华文仿宋', sans-serif;
+            background: #f4fdf4;
+            /* 背景颜色改为非常浅的绿色 */
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            background: #ffffff;
+            /* 背景颜色改为白色 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            /* 增加圆角 */
+        }
+
+        .sidebar {
+            flex: 1.5;
+            padding: 20px;
+            margin-right: 20px;
+            background: #e0f7e0;
+            /* 背景颜色改为更浅的绿色 */
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content {
+            flex: 2;
+            padding: 40px;
+            background: #e0f7e0;
+            /* 背景颜色改为更浅的绿色 */
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #66bb6a;
+            /* 标题颜色改为浅绿色 */
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .examples h2 {
+            color: #183619;
+            /* 标题颜色改为绿色 */
+            text-align: left;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .category-title {
+            background-color: #81c784;
+            /* 背景颜色改为浅绿色 */
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .examples ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .examples ul li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 8px 14px;
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+            /* 添加过渡效果 */
+        }
+
+        .examples ul li:hover {
+            background: #e0f7e0;
+            /* 悬停时背景颜色改为更浅的绿色 */
+        }
+
+        .examples button {
+            padding: 6px 12px;
+            background: #66bb6a;
+            /* 按钮背景颜色改为浅绿色 */
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .examples button:hover {
+            background: #4caf50;
+            /* 按钮悬停背景颜色改为绿色 */
+        }
+
+        .content p {
+            font-size: 1.2em;
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 120px);
+            padding: 10px;
+            border: 2px solid #66bb6a;
+            /* 边框颜色改为浅绿色 */
+            border-radius: 30px;
+            font-size: 1em;
+            margin-right: 10px;
+            transition: border-color 0.3s;
+            /* 添加过渡效果 */
+        }
+
+        input[type="text"]:focus {
+            border-color: #4caf50;
+            /* 聚焦时边框颜色改为绿色 */
+            outline: none;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background: #66bb6a;
+            /* 按钮背景颜色改为浅绿色 */
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #4caf50;
+            /* 按钮悬停背景颜色改为绿色 */
+        }
+
+        @media (max-width: 998px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar,
+            .main-content {
+                flex: none;
+                width: 100%;
+                margin: 0;
+            }
+
+            .sidebar {
+                margin-bottom: 20px;
+            }
+        }
+
+        #queryResult {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7e0;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            font-size: 1.2em;
+        }
+
+        .resultHeader {
+            font-weight: bold;
+            color: #153216;
+            margin-bottom: 10px;
+        }
+     
+    </style>
+    <script>
+        function handleQueryClick(query) {
+            document.querySelector('form').elements['query'].value = query;
+            document.querySelector('form').submit();
+        }
+
+        function displayQuery() {
+            var userQuery = document.getElementById("userQuery").value;
+            document.getElementById("userQueryDisplay").textContent = "查询的问题：" + userQuery;
+            // 提交表单
+            document.querySelector('form').submit();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="examples">
+                <h2>示例问题：</h2>
+                <div class="examples">
+                    <h2 class="category-title">中药方剂问题</h2>
+                    <ul>
+                        <li>
+                            <span>克应丸的制作处方是什么？</span>
+                            <button onclick="handleQueryClick('克应丸的制作处方是什么？')">查询</button>
+                        </li>
+                        <li>
+                            <span>补血和气饮可以治疗什么病症？</span>
+                            <button onclick="handleQueryClick('补血和气饮可以治疗什么病症？')">查询</button>
+                        </li>
+                        <li>
+                            <span>补血定痛汤的用量用法是什么？</span>
+                            <button onclick="handleQueryClick('补血定痛汤的用量用法是什么？')">查询</button>
+                        </li>
+                        <li>
+                            <span>外邪未已者不能服用哪些中药方剂？</span>
+                            <button onclick="handleQueryClick('外邪未已者不能服用哪些中药方剂？')">查询</button>
+                        </li>
+                        <li>
+                            <span>如何制作苍术难名丹？</span>
+                            <button onclick="handleQueryClick('如何制作苍术难名丹？')">查询</button>
+                        </li>
+                        <li>
+                            <span>服用脚气散的注意事项有哪些？</span>
+                            <button onclick="handleQueryClick('服用脚气散的注意事项有哪些？')">查询</button>
+                        </li>
+                        <li>
+                            <span>在临床治疗慢性鼻炎时，可以使用哪些中药方剂？</span>
+                            <button onclick="handleQueryClick('在临床治疗慢性鼻炎时，可以使用哪些中药方剂？')">查询</button>
+                        </li>
+                    </ul>
+                    <h2 class="category-title">药品问题</h2>
+                    <ul>
+                        <li>
+                            <span>服用药品五海瘿瘤丸的注意事项有哪些？</span>
+                            <button onclick="handleQueryClick('服用药品五海瘿瘤丸的注意事项有哪些？')">查询</button>
+                        </li>
+                        <li>
+                            <span>药品益母草颗粒可以治疗什么病症？</span>
+                            <button onclick="handleQueryClick('药品益母草颗粒可以治疗什么病症？')">查询</button>
+                        </li>
+                        <li>
+                            <span>若出现月经量少的病症，建议使用什么药品？</span>
+                            <button onclick="handleQueryClick('若出现月经量少的病症，建议使用什么药品？')">查询</button>
+                        </li>
+                        <li>
+                            <span>药品金刚藤糖浆的用量用法是什么？</span>
+                            <button onclick="handleQueryClick('药品金刚藤糖浆的用量用法是什么？')">查询</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <h1>药品查询系统</h1>
+            <form action="/index" method="post" onsubmit="displayQuery(); return false;">
+                <input type="text" id="userQuery" name="query" placeholder="请输入您的查询" required />
+                <input type="submit" value="查询" />
+            </form>
+            <div class="content">
+                <div id="queryResult">
+                    <div class="resultHeader">查询问题:{{ query }}</div>
+                </div>
+                <div id="queryResult">
+                    <div class="resultHeader">查询结果:{{ result }}</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+</body>
+
+</html>
